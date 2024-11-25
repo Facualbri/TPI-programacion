@@ -363,12 +363,19 @@ def juego_santino():
         if saldo==0:
             print("¡Te quedaste sin saldo!")
             i=1
+
+def juego_bauti():
+   piedra=0 
+
+def juego_mariano():
+    sopaletra=0
+
 salir=False 
 while salir==False:     
     print("***************************************************")
     print("                   Menú de juegos                  ")
     print("***************************************************")
-    print("1) Ahorcado\n2) BlackJack\n3) Sopa de letras\n4) Adivina el número\n5) Piedra, Pepel o Tijera\n0) Salir")
+    print("1) Ahorcado\n2) BlackJack\n3) Sopa de letras\n4) Adivina el número\n5) Piedra, papel o tijera\n0) Salir")
     opcion=int(input("Ingrese su opción de juego: "))
 
     if opcion==0:
@@ -401,6 +408,7 @@ while salir==False:
         if opcion==3:
             while jugar:
                 print ("Mariano Achilli")
+                juego_mariano()
                 salir_del_juego=int(input("Ingrese 8 para volver al menú o 9 para volver a jugar: "))
                 if salir_del_juego==8:
                     jugar=False
@@ -420,6 +428,7 @@ while salir==False:
         if opcion==5:
             while jugar:
                 print ("Bautista Martini")
+                juego_bauti()
                 salir_del_juego=int(input("Ingrese 8 para volver al menú o 9 para volver a jugar: "))
                 if salir_del_juego==8:
                     jugar=False
