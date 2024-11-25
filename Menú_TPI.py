@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def juego_maga():
     import random  
     palabras=["python", "programacion", "sistemas", "compilador", "circuito", "computadora", "estructura", "datos"]   
@@ -369,15 +368,7 @@ while salir==False:
     print("***************************************************")
     print("                   Menú de juegos                  ")
     print("***************************************************")
-    print("1) Ahorcado\n2) BlackJack\n3) Sopa de letras\n4) Adivina el número\n5) piedra, pepel o tijera\n0) Salir")
-=======
-salir=False 
-while salir==False:     
-    print("****************************************************")
-    print("                   Menú de juegos                   ")
-    print("****************************************************")
-    print("1) Ahorcado\n2) BlackJack\n3) Piedra, papel o tijera\n4) Sopa de letras\n5) Juego del Bautista\n0) Salir")
->>>>>>> 3236fdac10b57897db428b5f6964a54abeed5596
+    print("1) Ahorcado\n2) BlackJack\n3) Sopa de letras\n4) Adivina el número\n5) Piedra, Pepel o Tijera\n0) Salir")
     opcion=int(input("Ingrese su opción de juego: "))
 
     if opcion==0:
@@ -389,10 +380,7 @@ while salir==False:
         if opcion==1:
             while jugar:
                 print ("Magalí Pérez")
-<<<<<<< HEAD
                 juego_maga()
-=======
->>>>>>> 3236fdac10b57897db428b5f6964a54abeed5596
                 salir_del_juego=int(input("Ingrese 8 para volver al menú o 9 para volver a jugar: "))
                 print()
                 if salir_del_juego==8:
@@ -403,10 +391,7 @@ while salir==False:
         if opcion==2:
             while jugar:
                 print ("Santino Volmaro")
-<<<<<<< HEAD
                 juego_santino()
-=======
->>>>>>> 3236fdac10b57897db428b5f6964a54abeed5596
                 salir_del_juego=int(input("Ingrese 8 para volver al menú o 9 para volver a jugar: "))
                 if salir_del_juego==8:
                     jugar=False
@@ -425,10 +410,7 @@ while salir==False:
         if opcion==4:
             while jugar:
                 print ("Facundo Albri")
-<<<<<<< HEAD
                 juego_facu()
-=======
->>>>>>> 3236fdac10b57897db428b5f6964a54abeed5596
                 salir_del_juego=int(input("Ingrese 8 para volver al menú o 9 para volver a jugar: "))
                 if salir_del_juego==8:
                     jugar=False
