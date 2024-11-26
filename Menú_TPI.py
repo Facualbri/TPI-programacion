@@ -365,10 +365,147 @@ def juego_santino():
             i=1
 
 def juego_bauti():
-   piedra=0 
+# importamos el módulo random 
+    import random
 
+    def piedra_papel_tijera():
+        # damos un mensaje de bienvenida
+        print("¡bienvenido al juego de piedra, papel o tijera!")
+        
+        # creamos una lista con las opciones para jugar
+        opciones = ["piedra", "papel", "tijera"]
+
+        # iniciamos un bucle que continua hasta que el jugador decida salir
+        while True:
+            # solicitamos al jugador que elija entre las opciones o que escriba 'salir'
+            jugador = input("elige: piedra, papel o tijera (o escribe 'salir' para terminar): ").lower()
+            
+            # verificamos si el jugador quiere salir del juego
+            if jugador == "salir":
+                print("¡gracias por jugar! nos vemos pronto.")
+                break  # Salimos del bucle para terminar el juego
+
+            # verificamos si la entrada del jugador es válida (debe estar en la lista de opciones)
+            if jugador not in opciones:
+                print("opción inválida. por favor, elige piedra, papel o tijera.")
+                continue  # volvemos al inicio del bucle para pedir una opción válida
+
+            # la computadora hace su elección al azar de la lista de opciones
+            computadora = random.choice(opciones)
+            print(f"la computadora eligió: {computadora}")
+
+            # comparamos las elecciones para determinar el resultado
+            if jugador == computadora:
+                # si ambas elecciones son iguales, es un empate
+                print("es un empate.")
+            elif (jugador == "piedra" and computadora == "tijera") or \
+                (jugador == "papel" and computadora == "piedra") or \
+                (jugador == "tijera" and computadora == "papel"):
+                # estas son las condiciones en las que el jugador gana
+                print("¡ganaste!")
+            else:
+                # si no es empate ni el jugador gana, entonces la computadora gana
+                print("perdiste.")
+    # llamamos a la función para iniciar el juego
+    piedra_papel_tijera()
+
+matriz=None
+palabras_acertadas=0
 def juego_mariano():
-    sopaletra=0
+    import random
+    import string
+    tamaño=15
+    palabras=['ZAFIRO', 'ESPIRITU', 'INSTITUTO', 'METALURGICA', 'CUADERNO']
+
+    def generar_matriz(tamaño):
+        return [[' ' for _ in range(tamaño)] for _ in range(tamaño)]
+
+    def imprimir_matriz(matriz):
+        for fila in matriz:
+            print(' '.join(fila))
+
+    def colocar_palabra(matriz, palabra, dirección, fila, columna):
+        if dirección == 'H':
+            for i, letra in enumerate(palabra):
+                matriz[fila][columna + i] = letra
+        elif dirección == 'V':
+            for i, letra in enumerate(palabra):
+                matriz[fila + i][columna] = letra
+
+    def verificar_posición(matriz, palabra, dirección, fila, columna):
+        if dirección == 'H' and columna + len(palabra) > len(matriz):
+            return False
+        elif dirección == 'V' and fila + len(palabra) > len(matriz):
+            return False
+        for i, letra in enumerate(palabra):
+            if dirección == 'H' and matriz[fila][columna + i] != ' ':
+                return False
+            elif dirección == 'V' and matriz[fila + i][columna] != ' ':
+                return False
+        return True
+
+    def insertar_palabras(matriz, palabras):
+        for palabra in palabras:
+            colocada = False
+            intentos = 0
+            while not colocada and intentos < 100:
+                dirección = random.choice(['H', 'V'])
+                if dirección == 'H':
+                    fila = random.randint(0, len(matriz) - 1)
+                    columna = random.randint(0, len(matriz) - len(palabra))
+                elif dirección == 'V':
+                    fila = random.randint(0, len(matriz) - len(palabra))
+                    columna = random.randint(0, len(matriz) - 1)
+                if verificar_posición(matriz, palabra, dirección, fila, columna):
+                    colocar_palabra(matriz, palabra, dirección, fila, columna)
+                    colocada = True
+                intentos += 1
+            if not colocada:
+                print(f"No se pudo colocar la palabra: {palabra}")
+
+    def rellenar_matriz(matriz):
+        letras = string.ascii_uppercase
+        for fila in range(len(matriz)):
+            for columna in range(len(matriz[fila])):
+                if matriz[fila][columna] == ' ':
+                    matriz[fila][columna] = random.choice(letras)
+
+    def verificar_palabra(palabra, fila, columna, dirección):
+        if palabra not in palabras:
+            return False
+        temp_matriz = generar_matriz(tamaño)
+        colocar_palabra(temp_matriz, palabra, dirección, fila, columna)
+        for i in range(tamaño):
+            for j in range(tamaño):
+                if temp_matriz[i][j] != ' ' and temp_matriz[i][j] != matriz[i][j]:
+                    return False
+        return True
+    def jugar():
+        global matriz
+        matriz = generar_matriz(tamaño)
+        insertar_palabras(matriz, palabras)
+        rellenar_matriz(matriz)
+        imprimir_matriz(matriz)
+        global palabras_acertadas
+        while palabras_acertadas<5:
+            opcion= input("Ingresa la palabra, fila, columna y dirección (ejemplo: MONO 1 2 H) o 'salir' para terminar: ")
+            if opcion.lower() == 'salir':
+                break
+            palabra, fila, columna, dirección = opcion.split()
+            fila = int(fila)
+            columna = int(columna)
+            
+            if verificar_palabra(palabra, fila, columna, dirección):
+                print(f"¡Correcto!, {palabra} esta en la sopa de letras.")
+                palabras_acertadas+=1
+            else:
+                print(f"Incorrecto, {palabra} no está en esas coordenadas. Inténtalo de nuevo.")
+            imprimir_matriz(matriz)
+        if palabras_acertadas==len(palabras):
+            print(f"¡Felicitaciones!, encontraste todas las palabras.")
+        else:
+            print(f"Encontraste {palabras_acertadas} palabras de cinco, intentalo de nuevo.\n¡Buena suerte!")
+    jugar()
 
 salir=False 
 while salir==False:     
